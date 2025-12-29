@@ -2,7 +2,7 @@ import streamlit as st
 import replicate
 import time
 
-# --- CONFIGURATION ---
+# --- CONFIGURATION DU MAÎTRE ---
 VOTRE_NUMERO_WA = "2250554178128" 
 CODE_VALIDE = "MASTER25"
 
@@ -21,12 +21,11 @@ st.sidebar.info("Le code secret vous sera envoyé sur WhatsApp après votre tran
 st.title("🎬 IA Studio Pro")
 st.write("Le premier studio de génération vidéo par IA en Côte d'Ivoire.")
 
-# --- SECTION DÉMONSTRATION ---
-st.subheader("📺 Exemple de ce que l'IA peut créer :")
-
-# Utilisation d'une vidéo YouTube stable (Démonstration de Luma Dream Machine)
-st.video("https://www.youtube.com/watch?v=R9S_Gv2Uu_I")
-st.caption("Découvrez la puissance de notre moteur de génération vidéo.")
+# --- SECTION DÉMONSTRATION (AVEC VOTRE VIDÉO) ---
+st.subheader("📺 Exemple de ce que notre IA peut créer :")
+# Voici votre vidéo YouTube intégrée
+st.video("https://youtu.be/q3xaGATnLHk")
+st.caption("Vidéo futuriste générée par IA Studio Pro.")
 
 st.divider()
 
@@ -48,6 +47,7 @@ if code_client == CODE_VALIDE:
                 client = replicate.Client(api_token=api_token)
                 
                 with st.spinner("🚀 L'IA travaille... Patientez environ 2 minutes."):
+                    # Utilisation du modèle LUMA RAY
                     output = client.run(
                         "luma/ray",
                         input={"prompt": prompt}
@@ -60,7 +60,7 @@ if code_client == CODE_VALIDE:
             
             except Exception as e:
                 st.error("Erreur de crédit : Le réservoir de l'IA est vide.")
-                st.info("Maître, vous devez ajouter 5$ sur Replicate pour activer la génération.")
+                st.info("Maître, vous devez ajouter 5$ sur Replicate pour activer la génération automatique.")
         else:
             st.error("Veuillez écrire une description.")
 
