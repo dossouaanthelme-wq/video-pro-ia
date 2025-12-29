@@ -3,7 +3,7 @@ import replicate
 import os
 
 # Remplace les xxxx par ta clé Replicate r8_...
-REPLICATE_API_TOKEN = "TA_CLE_R8_ICI" 
+REPLICATE_API_TOKEN = "r8_FCxdfgfiC1IYfualzT2LjQmEzNn5XTu0L5Wyd" 
 
 st.set_page_config(page_title="VidéoGénérateur Pro", page_icon="🎬")
 
