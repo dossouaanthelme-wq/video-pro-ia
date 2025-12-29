@@ -10,27 +10,20 @@ st.set_page_config(page_title="IA Studio Pro", page_icon="🎬")
 st.title("🎬 IA Studio Pro : Vidéos 25s")
 st.write("Créez vos vidéos cinématographiques avec l'IA.")
 
-# --- BARRE LATÉRALE ---
+# --- BARRE LATÉRALE (SIDEBAR) ---
 st.sidebar.header("💳 ACHETER UN ACCÈS")
-st.sidebar.write("Le pack (1 vidéo HD) est à **5 000 FCFA**.")
+st.sidebar.write("Pack VIP : **5 000 FCFA**")
 
 # Construction du lien WhatsApp
-message_wa = "Bonjour Maître, je souhaite acheter un code VIP (5.000 FCFA)."
-lien_wa = f"https://wa.me/{VOTRE_NUMERO_WA}?text={message_wa.replace(' ', '%20')}"
+msg = "Bonjour Maître, je souhaite acheter un code VIP (5.000 FCFA)."
+lien_wa = f"https://wa.me/{VOTRE_NUMERO_WA}?text={msg.replace(' ', '%20')}"
 
-# AFFICHAGE DIRECT DU LIEN (Pas de bouton complexe qui fait planter)
-st.sidebar.markdown(f"""
-<div style="text-align: center;">
-    <a href="{lien_wa}" target="_blank" style="text-decoration: none;">
-        <div style="background-color: #25D366; color: white; padding: 15px; border-radius: 10px; font-weight: bold; font-size: 18px;">
-            💬 PAYER PAR WAVE ICI
-        </div>
-    </a>
-</div>
-""", unsafe_allow_dom=True)
+# MÉTHODE 100% SÉCURISÉE (Sans HTML complexe)
+st.sidebar.write("---")
+st.sidebar.markdown(f"### [👉 PAYER PAR WAVE ICI]({lien_wa})")
+st.sidebar.write("---")
 
-st.sidebar.write("") # Espace
-st.sidebar.info("Cliquez sur le bouton vert ci-dessus pour me contacter sur WhatsApp et payer par Wave.")
+st.sidebar.info("Cliquez sur le lien bleu ci-dessus pour me contacter sur WhatsApp.")
 
 # --- SECTION GÉNÉRATION ---
 st.divider()
