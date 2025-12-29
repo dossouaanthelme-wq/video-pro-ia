@@ -22,15 +22,16 @@ st.title("🎬 IA Studio Pro")
 st.write("Le premier studio de génération vidéo par IA en Côte d'Ivoire.")
 
 # --- SECTION DÉMONSTRATION ---
-st.subheader("📺 Voyez ce que l'IA peut créer :")
-# Vidéo de démo (Lien d'exemple de haute qualité)
-st.video("https://replicate.delivery/pbxt/IVZp8f5e7f7l8p5e7f7l8p5e7f7l8p5e7f7l8p5e7f7l8p5e7f7l/output.mp4")
-st.caption("Exemple de vidéo cinématographique générée en 2 minutes.")
+st.subheader("📺 Exemple de ce que l'IA peut créer :")
+
+# Utilisation d'une vidéo YouTube stable (Démonstration de Luma Dream Machine)
+st.video("https://www.youtube.com/watch?v=R9S_Gv2Uu_I")
+st.caption("Découvrez la puissance de notre moteur de génération vidéo.")
 
 st.divider()
 
 # --- ZONE CLIENT ---
-st.subheader("🚀 Prêt à créer votre vidéo ?")
+st.subheader("🚀 Prêt à créer votre propre vidéo ?")
 saisie = st.text_input("🔑 Entrez votre Code Secret pour débloquer le moteur :", type="password")
 code_client = saisie.strip().upper() 
 
