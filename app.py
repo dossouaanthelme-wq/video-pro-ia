@@ -2,11 +2,10 @@ import streamlit as st
 import replicate
 import time
 
-# --- CONFIGURATION DU MAÎTRE ---
+# --- CONFIGURATION ---
 VOTRE_NUMERO_WA = "2250554178128" 
 CODE_VALIDE = "MASTER25"
 
-# Configuration de la page
 st.set_page_config(page_title="IA Studio Pro", page_icon="🎬", layout="centered")
 
 # --- BARRE LATÉRALE ---
@@ -16,53 +15,56 @@ msg = "Bonjour Maître, je souhaite acheter un code VIP."
 lien_wa = f"https://wa.me/{VOTRE_NUMERO_WA}?text={msg.replace(' ', '%20')}"
 st.sidebar.markdown(f"### [👉 PAYER PAR WAVE]({lien_wa})")
 st.sidebar.divider()
-st.sidebar.info("Après paiement, entrez votre code secret au milieu de l'écran.")
+st.sidebar.info("Le code secret vous sera envoyé sur WhatsApp après votre transfert Wave.")
 
 # --- INTERFACE PRINCIPALE ---
 st.title("🎬 IA Studio Pro")
-st.write("Créez des vidéos cinématographiques professionnelles en quelques minutes.")
+st.write("Le premier studio de génération vidéo par IA en Côte d'Ivoire.")
 
-# Saisie du code
-saisie = st.text_input("🔑 Entrez votre Code Secret :", type="password")
+# --- SECTION DÉMONSTRATION ---
+st.subheader("📺 Voyez ce que l'IA peut créer :")
+# Vidéo de démo (Lien d'exemple de haute qualité)
+st.video("https://replicate.delivery/pbxt/IVZp8f5e7f7l8p5e7f7l8p5e7f7l8p5e7f7l8p5e7f7l8p5e7f7l/output.mp4")
+st.caption("Exemple de vidéo cinématographique générée en 2 minutes.")
+
+st.divider()
+
+# --- ZONE CLIENT ---
+st.subheader("🚀 Prêt à créer votre vidéo ?")
+saisie = st.text_input("🔑 Entrez votre Code Secret pour débloquer le moteur :", type="password")
 code_client = saisie.strip().upper() 
 
 if code_client == CODE_VALIDE:
-    st.success("✅ Accès VIP activé. Le moteur est prêt.")
+    st.success("✅ ACCÈS ACTIVÉ. Vous pouvez maintenant utiliser l'IA.")
     
-    prompt = st.text_area("Décrivez votre vidéo (en anglais pour un meilleur résultat) :", 
-                          placeholder="Ex: A cinematic flyover of Abidjan at night, neon lights, 4k, hyper-realistic...")
+    prompt = st.text_area("Décrivez votre scène (en anglais) :", 
+                          placeholder="Ex: A futuristic luxury car driving through Abidjan, 4k, cinematic...")
     
     if st.button("🎥 LANCER LA GÉNÉRATION"):
         if prompt:
             try:
-                # Récupération sécurisée du Token dans les secrets
                 api_token = st.secrets["REPLICATE_API_TOKEN"]
                 client = replicate.Client(api_token=api_token)
                 
-                with st.spinner("🚀 L'IA travaille... Patientez environ 120 secondes."):
-                    # Utilisation du modèle LUMA RAY (Le plus puissant actuellement)
+                with st.spinner("🚀 L'IA travaille... Patientez environ 2 minutes."):
                     output = client.run(
                         "luma/ray",
                         input={"prompt": prompt}
                     )
                 
                 if output:
-                    # Affichage du résultat final
                     st.video(output)
                     st.balloons()
-                    st.success("Vidéo terminée ! Vous pouvez faire un clic droit pour l'enregistrer.")
-                    st.download_button("📥 Télécharger la vidéo HD", output, file_name="ma_video_pro.mp4")
+                    st.download_button("📥 Télécharger en HD", output, file_name="video_ia.mp4")
             
             except Exception as e:
-                # Si l'erreur 422 revient, c'est probablement un manque de fonds sur Replicate
-                st.error(f"Oups ! Une erreur est survenue : {e}")
-                st.info("💡 Maître, vérifiez que votre compte Replicate est bien crédité d'au moins 5$.")
+                st.error("Erreur de crédit : Le réservoir de l'IA est vide.")
+                st.info("Maître, vous devez ajouter 5$ sur Replicate pour activer la génération.")
         else:
-            st.error("Veuillez entrer une description pour votre vidéo.")
+            st.error("Veuillez écrire une description.")
 
 elif saisie:
-    st.error("❌ Code incorrect. Contactez le Maître sur WhatsApp.")
+    st.error("❌ Code incorrect. Cliquez sur 'PAYER PAR WAVE' à gauche pour en obtenir un.")
 
-# Pied de page
 st.divider()
-st.caption("© 2025 IA Studio Pro - Service Premium")
+st.caption("© 2025 IA Studio Pro - Abidjan, Côte d'Ivoire")
